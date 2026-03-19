@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans[wght].woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+
+    /* Light SaaS palette — near-white base, blue accent */
+    --background: 0.98 0.008 240;
+    --foreground: 0.18 0.01 250;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.01 250;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.01 250;
+
+    /* Primary: Strong blue ~#2F6BFF */
+    --primary: 0.52 0.22 264;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: Soft blue-gray */
+    --secondary: 0.94 0.012 240;
+    --secondary-foreground: 0.35 0.01 250;
+
+    /* Muted */
+    --muted: 0.95 0.008 240;
+    --muted-foreground: 0.52 0.01 250;
+
+    /* Accent: WhatsApp green */
+    --accent: 0.55 0.18 145;
+    --accent-foreground: 0.99 0 0;
+
+    /* Destructive */
+    --destructive: 0.56 0.22 25;
+    --destructive-foreground: 0.99 0 0;
+
+    /* Success */
+    --success: 0.55 0.18 145;
+    --success-foreground: 0.99 0 0;
+
+    /* Warning: Amber */
+    --warning: 0.72 0.18 65;
+    --warning-foreground: 0.12 0 0;
+
+    /* Borders */
+    --border: 0.9 0.012 240;
+    --input: 0.92 0.012 240;
+    --ring: 0.52 0.22 264;
+
+    /* Charts */
+    --chart-1: 0.52 0.22 264;
+    --chart-2: 0.55 0.18 145;
+    --chart-3: 0.72 0.18 65;
+    --chart-4: 0.56 0.22 25;
+    --chart-5: 0.6 0.16 290;
+
+    /* Sidebar (unused but required) */
+    --sidebar-background: 0 0 0;
+    --sidebar-foreground: 0 0 0;
+    --sidebar-primary: 0 0 0;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 0 0 0;
+    --sidebar-accent-foreground: 0 0 0;
+    --sidebar-border: 0 0 0;
+    --sidebar-ring: 0 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    min-height: 100vh;
+    background-color: oklch(0.97 0.012 240);
+    background-image: radial-gradient(
+        ellipse at 60% 0%,
+        oklch(0.52 0.22 264 / 0.07) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 0% 100%,
+        oklch(0.55 0.18 145 / 0.05) 0%,
+        transparent 45%
+      );
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  button,
+  a[role="button"] {
+    min-height: 44px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-1 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .card-shadow {
+    box-shadow: 0 1px 4px 0 oklch(0.18 0.01 250 / 0.06), 0 4px 16px 0
+      oklch(0.18 0.01 250 / 0.07);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 2px 8px 0 oklch(0.18 0.01 250 / 0.08), 0 8px 24px 0
+      oklch(0.18 0.01 250 / 0.1);
+  }
+
+  .due-pulse {
+    animation: due-pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes due-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 oklch(0.72 0.18 65 / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px oklch(0.72 0.18 65 / 0);
+    }
+  }
+
+  .fade-up {
+    animation: fade-up 0.35s ease-out;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes ring-bell {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    15% {
+      transform: rotate(15deg);
+    }
+    30% {
+      transform: rotate(-15deg);
+    }
+    45% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(5deg);
+    }
+    90% {
+      transform: rotate(-5deg);
+    }
+  }
+
+  .animate-ring {
+    animation: ring-bell 1s ease-in-out;
+  }
+}
